@@ -1,0 +1,12 @@
+.container {
+    display: flex;
+    gap: 20px; /* Optional: Adds space between the form and app-list-subjects */
+  }
+  
+  .col-4 {
+    flex: 1; /* 40% width for the list component */
+  }
+  
+  .col-8 {
+    flex: 2; /* 60% width for the form */
+  }

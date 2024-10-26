@@ -1,0 +1,75 @@
+<form [formGroup]="formStud" class="container mt-5">
+    <!-- Title Field -->
+    <div class="row mb-3">
+        <label for="name" class="col-sm-2 col-form-label">Name</label>
+        <div class="col-sm-10">
+                <input type="text" class="form-control" id="name" pInputText formControlName="name" placeholder="Enter Name..."/>
+            <br>
+            <small class="p-error block" 
+                *ngIf="formStud.controls['name'].invalid &&
+                formStud.controls['name'].dirty">Name is Required</small>
+        </div>
+    </div>
+
+    <!-- Address Field -->
+    <div class="row mb-3">
+        <label for="address" class="col-sm-2 col-form-label">Address</label>
+        <div class="col-sm-10">
+            <input type="text" class="form-control" id="address" pInputText formControlName="address" placeholder="Enter Address..."/>
+            <br>
+            <small class="p-error block" 
+                *ngIf="formStud.controls['address'].invalid &&
+                formStud.controls['address'].dirty">Address is Required</small>
+
+        </div>
+    </div>
+
+    <!-- School Field -->
+    <div class="field row mb-3">
+        <label for="school" class="col-sm-2 col-form-label">School</label>
+        <div class="col-sm-10">
+            <input type="text" class="form-control" id="school" pInputText formControlName="school" placeholder="Enter School Name..."/>
+            <br>
+            <small class="p-error block" 
+                *ngIf="formStud.controls['school'].invalid &&
+                formStud.controls['school'].dirty">School is Required</small>
+        </div>
+    </div>
+
+    <!-- Grade Dropdown -->
+    <div class="row mb-3">
+        <label for="GradeId" class="col-sm-2 col-form-label">Grade</label>
+        <div class="col-sm-10">
+            <p-dropdown 
+                [options]="grades" 
+                [(ngModel)]="selectedGrade" 
+                optionLabel="name"
+                optionValue="id" 
+                formControlName="gradeId"
+                placeholder="Select a Grade" 
+                (onChange)="changeGrade($event)" 
+                [editable]="true" 
+                [showClear]="true" 
+                [filter]="true" 
+                class="form-control p-dropdown"
+                >
+            </p-dropdown>
+            <br>
+            <small class="p-error block" 
+            *ngIf="formStud.controls['gradeId'].invalid &&
+            formStud.controls['gradeId'].dirty">Grade is Required</small>
+
+        </div>
+    </div>
+
+    <!-- Add Student Button -->
+     <br>
+    <div class="row">
+        <div class="col-sm-2"></div>
+        <div class="col-sm-10">
+            <p-button (click)="Complete()" label="Complete" [disabled]="!formStud.valid" class="btn btn-primary w-100"></p-button>
+        </div>
+    </div>
+</form>
+<br>
+<p-button (click)="Back()" label="Back" [disabled]="backEnable" class="btn btn-primary w-100"></p-button>

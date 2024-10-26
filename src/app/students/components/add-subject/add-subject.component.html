@@ -1,0 +1,46 @@
+<div class="container mt-5 d-flex">
+    <!-- Left Section: app-list-subjects -->
+    <div class="col-4">
+        <form [formGroup]="formSub">
+            <input type="number" pInputNumber formControlName="id" hidden>
+            <div class="row mb-3">
+              <label for="name" class="col-sm-2 col-form-label">Name</label>
+              <div class="col-sm-10">
+                <input type="text" class="form-control" id="name" pInputText formControlName="name" placeholder="Enter Name..." />
+                <br />
+                <small class="p-error block" *ngIf="formSub.controls['name'].invalid && formSub.controls['name'].dirty">Name is Required</small>
+              </div>
+            </div>
+      
+            <label for="TeacherId" class="col-sm-2 col-form-label">Teacher</label>
+            <div class="col-sm-10">
+              <p-dropdown 
+                [options]="teachers" 
+                [(ngModel)]="selectedTeacher" 
+                optionLabel="name" 
+                optionDisabled="isActive"
+                formControlName="teacher"
+                placeholder="Select a teacher" 
+                [editable]="true" 
+                [showClear]="true" 
+                [filter]="true" 
+                class="form-control p-dropdown"
+                >
+              </p-dropdown>
+              <br />
+              <small class="p-error block" *ngIf="formSub.controls['teacher'].invalid && formSub.controls['teacher'].dirty">Teacher is Required</small>
+            </div>
+            <br />
+            <div class="col-sm-10">
+              <p-button (click)="addSubject()" label="{{add?'addSubject':'editSubject'}}" [disabled]="!formSub.valid" class="btn btn-primary w-100"></p-button>
+            </div>
+          </form>
+    </div>
+  
+    <!-- Right Section: Form -->
+    <div class="col-8">
+        <app-list-subjects ></app-list-subjects>
+
+    </div>
+  </div>
+  

@@ -1,0 +1,32 @@
+<div class="slider-class" >
+    <h2>Table Example- Subjects List</h2>
+    <!-- {{this.users|json}} -->
+    <p-table 
+             [value]="subjects"
+             [columns]="cols"
+             >
+      <ng-template pTemplate="header" let-colz>
+          <tr>
+              <th *ngFor="let col of colz">
+                {{col}}
+              </th>
+              <th>Delete</th>
+          </tr>
+      </ng-template>
+      <ng-template pTemplate="body" let-sub let-i="index">
+          <tr>
+              <td>{{ sub.name }}</td>
+              <td>{{ sub.teacher.name }}</td>
+              <td>
+              <p-button (click)="deleteSubject(sub,i)" label="deleteSubject"  class="btn btn-primary w-100"></p-button>
+              </td>
+              <td>
+                <p-button (click)="updateSubject(sub,i)" label="updateSubject"  class="btn btn-primary w-100"></p-button>
+              </td>
+          </tr>
+      </ng-template>
+  </p-table>
+  
+  </div>
+
+  <p-button *ngIf="subjects.length>0" (click)="Submit()" label="Submit"  class="btn btn-primary w-100"></p-button>
